@@ -2,7 +2,7 @@
 Código utilizado en el desarrollo de TFM «Reconocimiento automático de imágenes para reconstrucción de redes planta-polinizador», para la obtención del título de Master en Ciencia de Datos de la UOC
 
 En este repositorio se puede encontrar los notebooks con el código necesario para replicar los resultados presentados en este proyecto. De manera específica, los notebooks que se pueden encontrar son los siguientes:
-- EfficientNET.ipynb: notebook con el código necesario para realizar el entrenamiento del modelo EfficientNet.
+- [EfficientNET.ipynb](https://github.com/andres-merino/TFM-UOC-CienciaDeDatos/blob/main/EfficientNet.ipynb): notebook con el código necesario para realizar el entrenamiento del modelo EfficientNet.
 - YOLOv5-entrenamiento.ipynb: notebook con el código necesario para realizar el entrenamiento del modelo YOLOv5, este fue ejecutado en Google Colab.
 - YOLOv5-prediccion.ipynb: notebook con el código necesario para realizar la predicción del modelo YOLOv5.
 - YOLOv5-prediccion-CrossVal.ipynb: notebook con el código necesario para realizar la predicción del modelo YOLOv5 con validación cruzada.
