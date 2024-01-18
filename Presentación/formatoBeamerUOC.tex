@@ -1,0 +1,123 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Paquetes base
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{booktabs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Fuente
+\usepackage[defaultfam,tabular,lining]{montserrat}
+    \renewcommand*\oldstylenums[1]{{\fontfamily{Montserrat-TOsF}\selectfont #1}}
+\usepackage{eulervm}      
+\usepackage{enumitem}
+\renewcommand{\labelitemi}{$\bullet$}
+\newcommand{\titulo}[1]{{\Large\textbf{\textcolor{azul}{\textsc{#1}}}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Espaciado
+\addtolength{\abovedisplayskip}{-2.5mm}
+\addtolength{\belowdisplayskip}{-2.5mm}
+\setlength{\parskip}{0.3\baselineskip}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Fondos
+\newcommand{\fondo}[1]{\setbeamertemplate{background}{\includegraphics[width=\paperwidth]{Fondo/#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Formato 
+\usetheme{metropolis}
+\metroset{titleformat=smallcaps, numbering=fraction}
+\usecolortheme{orchid}
+    \definecolor{azul}{RGB}{0, 9, 117}
+    \definecolor{celeste}{RGB}{123, 238, 254}
+
+    % Título en hoja de título
+    \setbeamercolor{title}{fg=white}
+    % Título de secciones
+    \setbeamercolor{titlelike}{fg=azul}
+    % Texto
+    \setbeamercolor{normal text}{fg=azul}
+    % Título de diapositiva
+    \setbeamercolor{frametitle}{fg=azul,bg=}
+
+    % Color de fondo en bloques
+    \setbeamercolor{block title}{fg=white,bg=azul}
+    \setbeamercolor{block body}{bg=celeste!50}
+    \setbeamercolor{block title alerted}{fg=white,bg=celeste}
+    \setbeamercolor{block body alerted}{bg=celeste!15}
+
+    % Texto en hoja de título
+    \setbeamercolor{author}{fg=celeste}
+    \setbeamerfont{author}{series=\bfseries}
+    \setbeamercolor{date}{fg=celeste}
+    \setbeamerfont{date}{series=\bfseries}
+    \setbeamercolor{institute}{fg=celeste}
+    \setbeamerfont{institute}{series=\bfseries}
+
+    % Barra de progreso
+    \setbeamercolor{progress bar}{bg=white, fg=azul}
+
+    % Bloques redondeados
+    \setbeamertemplate{blocks}[rounded][shadow=true]
+
+    % Caja de postit
+    \setbeamercolor{postit}{fg=white,bg=celeste}
+    \newenvironment{postitbox}[1][5cm]
+        {~\begin{beamercolorbox}[sep=0.2em,wd=#1,rounded=true,shadow=true]{postit}}
+        {\end{beamercolorbox}~}
+
+    % Caja de postit para imagen
+    \newcommand{\postitimg}[2][5cm]
+        {
+        ~\begin{beamercolorbox}[sep=0em,wd=#1,rounded=true,shadow=true]{postit}
+        \includegraphics[width=\linewidth]{#2}
+        \end{beamercolorbox}~
+        }
+
+    % Pie de diapositiva
+    \setbeamercolor{frame numbering}{fg=azul}
+    \setbeamerfont{page number in head/foot}{size=\tiny}
+    \setbeamertemplate{footline}{\hbox{
+        \begin{beamercolorbox}[wd=.33\textwidth, sep=1.2ex,center]{footline}%
+            % autor
+            \textcolor{azul}{\insertshortauthor}
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.33\textwidth, sep=1.2ex,center]{footline}%
+            % número de diapositiva
+            \usebeamerfont{page number in head/foot}%
+            \usebeamertemplate*{frame numbering}
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.33\textwidth, sep=1.2ex,center]{footline}%
+            % subtítulo
+            \textcolor{azul}{\insertshortsubtitle}
+        \end{beamercolorbox}%
+    }}
+
+
+    % Tabla de contenidos
+    \makeatletter
+    \patchcmd{\beamer@sectionintoc}
+      {\vfill}
+      {\vskip\itemsep}
+      {}
+      {}
+    \makeatother  
+    \setbeamertemplate{section in toc}{%
+    \inserttocsectionnumber.  \inserttocsection \par}
+
+    % Eliminar títulos de diapositivas
+    \setbeamertemplate{headline}{
+    \begin{beamercolorbox}[wd=\paperwidth,ht=8.5ex,dp=1.125ex,center]{frametitle}
+        \usebeamerfont{frametitle}\textcolor{celeste}{\insertsection}
+    \end{beamercolorbox}\vspace*{3mm}
+    }
+
+    % Ajustar el margen izquierdo
+    \setbeamersize{text margin left=1.5cm}
+
+    % Ajustar el título de la diapositiva
+    \setbeamertemplate{frametitle}{
+        \insertframetitle
+    }
+

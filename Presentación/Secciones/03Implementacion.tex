@@ -1,0 +1,329 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fondo{celeste}
+\section{Implementación del trabajo}
+\fondo{blanco}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Procesamiento de Datos}
+    \vspace*{-1cm}
+    \begin{itemize}
+        \item \textbf{Recolección:} Estudio de Serra (2022) con identificación por humanos.
+        \item \textbf{Selección de Imágenes:} 5445 imágenes de flores con polinizadores.
+        \item \textbf{Preparación:} Estandarización de dimensiones, uso de archivos XML para información de polinizadores.
+        \item \textbf{Categorización:} Clasificación de polinizadores en 7 categorías.
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \vspace*{-.3cm}
+    \begin{center}
+        \postitimg[0.67\textwidth]{Figuras/ejemplos.png}
+    \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \vspace*{-.3cm}
+    \begin{center}
+        \postitimg[0.77\textwidth]{Figuras/distribucion_especies.png}
+    \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Submuestreo y aumento de datos}
+    \vspace*{-.1cm}
+    \begin{center}
+        \postitimg[0.75\textwidth]{Figuras/distribucion_especies_aumento.png}
+    \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{EfficientNet}  
+    \vspace*{-5mm}
+    \begin{columns}
+    \column{.5\textwidth}
+    \begin{itemize}
+        \item \textbf{Entrenamiento:} 50 épocas, tamaño de lote de 32, imágenes a 600 píxeles.
+        \item \textbf{Evaluación:} Uso de curvas de aprendizaje.
+        \item \textbf{Resultados:} Baja precisión y evidencia de subajuste.
+    \end{itemize}
+    \column{.5\textwidth}
+    \vspace*{-0.5cm}
+    \begin{center}
+        \postitimg[1\textwidth]{Figuras/curvas_aprendizaje_efficientnet_1.png}
+    \end{center}
+    \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Análisis Inicial con YOLOv5}
+    \begin{itemize}
+        \item Prueba inicial con YOLOv5 entrenado en COCO (sin polinizadores).
+        \item Detecciones variadas, con poca referencia a plantas y sin insectos.
+    \end{itemize}
+
+    \begin{center}\small
+        \begin{tabular}{cc}
+            \toprule
+            \textbf{Objeto} & \textbf{Cantidad} \\
+            \midrule
+            no detection &  853 \\
+            bird         &  322 \\
+            banana       &  109 \\
+            dining table &   98 \\
+            apple        &   67 \\
+            ...          &  ... \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{frame}    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Entrenamiento y Evaluación de YOLOv5}
+    \vspace*{-1mm}
+    \begin{itemize}
+        \item Entrenamiento: 100 épocas, lote de 32 imágenes, ancho de 1280 píxeles.
+        \item Curvas de precisión-confianza y exhaustividad-confianza.
+    \end{itemize}
+    \vspace*{-3mm}
+    \begin{center}
+        \postitimg[0.465\textwidth]{Figuras/P_curve.png}
+        \hspace*{3mm}
+        \postitimg[0.465\textwidth]{Figuras/R_curve.png}
+    \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Comparación de resultados en validación}
+    \vspace*{-0.7cm}
+    \begin{center}
+        \postitimg[1\textwidth]{Figuras/comparacion.png}
+    \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Matriz de Confusión\\ en prueba}
+    \vspace*{-2.1cm}
+    \begin{columns}
+    \column{.4\textwidth}
+        \vspace*{-0.6cm}
+        \begin{itemize}
+            \item Precisión en «Bee» y «Hoverfly».
+            \item Variabilidad en la detección de insectos.
+        \end{itemize}
+    \column{.6\textwidth}
+        \begin{center}
+        \postitimg[0.99\textwidth]{Figuras/matriz_confusion_yolov5.png}
+        \end{center}
+    \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Métricas de Precisión y Exhaustividad}
+    \vspace*{-0.5cm}
+    \begin{columns}
+        \column{.45\textwidth}
+        \begin{itemize}
+            \item Alta precisión en todas las categorías, destacando en «Lepidoptera» con 0.98.
+            \item Variabilidad significativa en la exhaustividad, con diferencias notables entre categorías.
+            \item Exactitud global del modelo: 58\%.
+        \end{itemize}
+    \column{.55\textwidth}
+    \vspace*{-0.5cm}
+    \begin{center}\small
+        \begin{tabular}{ccc}
+            \toprule
+            \textbf{Categoría} & \textbf{Precisión}  &  \textbf{Exhaustividad}\\ 
+            \midrule
+            Bee &  0.96 &  0.56 \\
+            Coleoptera &  0.90 &  0.45 \\
+            Diptera &  0.85 &  0.64 \\
+            Hoverfly &  0.80 &  0.80 \\
+            Lepidoptera &  0.98 &  0.75 \\
+            Others &  0.79 &  0.54 \\
+            Wasp &  0.82 &  0.66 \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Exactitud en Función del Tamaño de los Insectos}
+    \vspace*{-5mm}
+
+    \begin{center}\small
+    \begin{tabular}{ccc}
+        \toprule
+        \textbf{Área mínima (\%)} & \textbf{Cantidad de imágenes} & \textbf{Exactitud general}\\
+        \midrule
+        0.0 & 1891 & 0.58 \\
+        0.1 & 1795 & 0.61 \\
+        0.5 & 1489 & 0.66 \\
+        1.0 & 1233 & 0.67 \\
+        2.5 & 812 & 0.71 \\
+        5.0 & 502 & 0.72 \\
+        \bottomrule
+    \end{tabular}
+    \end{center}
+
+    \begin{itemize}
+        \item Mayor exactitud lograda con insectos que ocupan más del 2.5 \% del área total de la imagen.
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Resultados Tamaño\\ de los Insectos 2 \%}
+    \vspace*{-0.5cm}
+    \begin{columns}
+        \column{.4\textwidth}
+    \begin{center}\small
+    \begin{tabular}{@{}ccc@{}}
+    \toprule
+          \textbf{Categoría} & \textbf{Prec.}  &  \textbf{Exhaus.}\\ 
+    \midrule
+        Bee &  0.94 &  0.64 \\
+        Coleoptera &  0.88 &  0.60 \\
+        Diptera &  0.92 &  0.76 \\
+        Hoverfly &  0.88 &  1.00 \\
+        Lepidoptera &  0.98 &  0.87 \\
+        Others &  0.72 &  0.47 \\
+        Wasp &  0.86 &  0.73 \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+    \column{.6\textwidth}
+    \vspace*{-1cm}
+    \begin{center}
+        \postitimg[0.98\textwidth]{Figuras/test_yolov5m_v01_area.png}
+    \end{center}
+    \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Validación Cruzada en YOLOv5}
+    \vspace*{-1.2cm}
+    \begin{columns}
+        \column{.6\textwidth}
+    \begin{itemize}
+        \item Número de \textit{folds} : 5.
+        \item Integración: máxima media de confianza.
+        \item Mejoras notables en la exactitud global y en la clasificación por categorías.
+        \item Indicador de robustez y efectividad del modelo.
+    \end{itemize}
+
+    \column{.4\textwidth}
+    \vspace*{-5mm}
+    \begin{center}\small
+        \begin{tabular}{ccc}
+            \toprule
+            \textbf{Categoría} & \textbf{Prec.}  &  \textbf{Exhaus.}\\ 
+            \midrule
+            Bee &           0.89 &  0.69 \\
+            Coleoptera &    0.91 &  0.55 \\
+            Diptera &       0.85 &  0.70 \\
+            Hoverfly &      0.32 &  0.70 \\
+            Lepidoptera &   0.96 &  0.78 \\
+            Others &        0.68 &  0.57 \\
+            Wasp &          0.75 &  0.77 \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Red de polinizadores: Matriz de interacciones}
+    \begin{center}
+        \postitimg[0.87\textwidth]{Figuras/matriz_interacciones_real.png}
+    \end{center}
+\end{frame}    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Red de polinizadores: Probabilidad de conexión}
+    \begin{center}
+        \postitimg[0.87\textwidth]{Figuras/matriz_probabilidades_real.png}
+    \end{center}
+\end{frame}
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Comparación de Redes}
+    \begin{center}
+        \postitimg[0.83\textwidth]{Figuras/redes_comparacion.png}
+    \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Comparación de Redes}
+    \vspace*{-0.2cm}
+
+    \begin{center}\small
+        \begin{tabular}{@{}ccc@{}}
+            \toprule
+                  \textbf{Métrica} & \textbf{Red real}  &  \textbf{Red estimada}\\ 
+            \midrule
+                Nodos &  24 &  21 \\
+                Aristas &  28 &  25 \\
+                Densidad &  0.101 &  0.119 \\
+                Grado medio & 2.33 & 2.38 \\
+            \bottomrule
+            \end{tabular}
+    \end{center}
+
+    \begin{center}\small
+    \begin{tabular}{@{}cc@{}}
+    \toprule
+    \textbf{Distancia} & \textbf{Valor} \\
+    \midrule
+    Error de desplazamiento & 0.053 \\
+    Similitud del coseno & 0.972 \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    

@@ -1,0 +1,74 @@
+\documentclass[aspectratio=169]{beamer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Paquetes
+\input{formatoBeamerUOC}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Datos
+\title{Reconocimiento automático de imágenes para reconstrucción de redes planta-polinizador}
+\subtitle[TFM]{Trabajo de Fin de Master\\[2mm] Máster Universitario en Ciencias de Datos\\[2mm]
+\textbf{Área:} Machine Learning}
+\author[Andrés Merino Toapanta]{\vspace*{-3.5mm}Andrés Merino Toapanta}
+\date{Enero 2024}
+\institute{\vspace*{-2mm}\textbf{Tutores:} Albert Solé-Ribalta, Pau Enric Serra, Javier Borge Holthoefer}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Página de título
+
+\fondo{inicio}
+\begin{frame}[plain]
+    \vspace*{0.85cm}
+    \addtocounter{framenumber}{-1}
+    \hspace*{0.6cm}
+    \begin{minipage}[t]{\dimexpr\textwidth-1cm}
+        \titlepage
+    \end{minipage}
+\end{frame}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% Página de índice 
+% \fondo{blanco}
+% \begin{frame}
+%     \frametitle{Contendio}
+%     \vspace*{-0.5cm}
+    
+%     \tableofcontents
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Sección 1
+\include{Secciones/01Introduccion}
+\include{Secciones/02Arte}
+\include{Secciones/03Implementacion}
+\include{Secciones/04Conclusiones}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% Página de referencias
+% \begin{frame}[allowframebreaks]    
+%     \titulo{Bibliografía}
+%     \bibliographystyle{apalike}
+%     \nocite{*}
+%     \bibliography{referencias.bib}
+% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Página final
+\fondo{final}
+\begin{frame}[plain]
+\begin{center}
+    \color{white}
+    {\Huge\textbf{Gracias}}
+
+    \vspace{1cm}
+    \textbf{Contacto:} aemerinot@uoc.edu; aemerinot@gmail.com
+\end{center}
+\end{frame}
+
+
+\end{document}
