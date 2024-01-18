@@ -1,0 +1,30 @@
+\chapter{Conclusiones y trabajo futuro}
+\label{chapter:conclusiones}
+
+Este trabajo ha demostrado con éxito el desarrollo y la aplicación de una red neuronal convolucional (YOLOv5) para el reconocimiento automático de polinizadores en imágenes de flores, un paso significativo en la reconstrucción de redes planta-polinizador. Se ha procesado y analizado un conjunto de datos compuesto por 5445 imágenes, con especial atención en la estandarización del tamaño de las imágenes y la extracción precisa de información relevante mediante archivos XML.
+
+Los resultados obtenidos del modelo YOLOv5 destacan una notable capacidad para detectar y clasificar polinizadores, aunque con ciertas limitaciones en la detección precisa de algunas especies y la diferenciación entre insectos y su entorno. Sin embargo, el uso de un tamaño mínimo de detección ha mejorado significativamente la precisión del modelo.
+
+En lo que respecta a la validación cruzada para el modelo YOLOv5, los resultados obtenidos son alentadores y reflejan la robustez y la capacidad de generalización del modelo. A pesar de ciertas variaciones en la precisión y la exhaustividad entre las categorías, estas fluctuaciones son normales y esperadas en el proceso de validación.
+
+Por otro lado, el modelo EfficientNet no logró un rendimiento satisfactorio, sugiriendo la necesidad de un enfoque más especializado para este tipo de datos.
+
+En cuanto a la reconstrucción de redes de polinizadores, el análisis comparativo entre la red real y la estimada por el modelo ha proporcionado una visión valiosa sobre la eficacia de estas técnicas en la representación precisa de las interacciones en ecosistemas.
+
+Las métricas calculadas sobre las redes muestran que el modelo ha hecho un trabajo notable al reproducir la estructura de la red planta-polinizador y que las diferencias entre las redes real y estimada son, en promedio, insignificantes. Esto sugiere que el modelo puede ser una herramienta confiable para la estimación de redes ecológicas.
+
+
+Para trabajos futuros, se recomienda:
+
+\begin{itemize}
+\item 
+    Exploración de Nuevas Técnicas y Modelos: Investigar otras arquitecturas de redes neuronales y métodos de procesamiento de imágenes que puedan mejorar la precisión en la detección y clasificación de polinizadores, especialmente en casos difíciles.
+\item 
+    Optimización de Modelos Existentes: Mejorar el entrenamiento y ajuste de modelos como EfficientNet para aumentar su eficacia en la detección de polinizadores.
+\item 
+    Ampliación de la Base de Datos: Incluir más variedades de polinizadores y plantas para enriquecer el conjunto de datos y permitir una generalización más robusta de los modelos.
+\item 
+    Aplicaciones en Conservación de la Biodiversidad: Explorar cómo estos modelos pueden aplicarse en proyectos de conservación y estudios de biodiversidad para comprender mejor las interacciones planta-polinizador.
+\item 
+    Generar protocolos para generar la detección de imágenes y la construcción de redes planta-polinizador a partir del trabajo de campo.
+\end{itemize}

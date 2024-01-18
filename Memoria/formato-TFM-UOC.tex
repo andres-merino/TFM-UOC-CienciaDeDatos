@@ -1,0 +1,253 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Paquetes
+\usepackage[spanish,es-ucroman,es-tabla]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{arev}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[a4paper,left=3.5cm,right=2.0cm,top=1.2cm,
+            headsep=3mm,headheight=2.3cm,includehead,
+            footskip=15mm]{geometry}
+\usepackage{float}
+\usepackage{listings}
+    \renewcommand{\lstlistingname}{Código}
+\usepackage{setspace}
+    \setstretch{1.15}
+\usepackage{enumitem}
+\usepackage[colorlinks,allcolors=.,breaklinks]{hyperref}
+\usepackage{silence}
+\WarningFilter{spanish}{Replacing `T1/fav/b/sc'}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Colores
+\color[HTML]{000078}
+\definecolor{celeste}{HTML}{73EDFF}
+\definecolor{gris}{HTML}{F0F0F0}
+
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Encabezados y pies de página
+\usepackage{fancyhdr}
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \fancyhead[L]{\hspace*{-2.5cm}
+    \includegraphics[width=18cm]{Figuras/encabezado.png}
+    }
+    \fancyfoot[R]{\footnotesize
+    \begin{tabular}{@{}l@{\ \ }l@{\ \ }l@{}}
+    \textcolor[HTML]{73EDFF}{\rule{6.7cm}{0.9mm}} &
+    \textcolor[HTML]{73EDFF}{\rule{5.7cm}{0.9mm}} &
+    \textcolor[HTML]{73EDFF}{\rule{2.7cm}{0.9mm}} \\
+       \@programa  & \@fecha & \textbf{pág. \thepage}
+    \end{tabular}
+    }
+\pagestyle{fancy}
+
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \fancyhead[L]{\hspace*{-2.5cm}
+    \includegraphics[width=18cm]{Figuras/encabezado.png}
+    }
+    \fancyfoot[R]{\footnotesize
+    \begin{tabular}{@{}l@{\ \ }l@{\ \ }l@{}}
+    \textcolor[HTML]{73EDFF}{\rule{6.7cm}{0.9mm}} &
+    \textcolor[HTML]{73EDFF}{\rule{5.7cm}{0.9mm}} &
+    \textcolor[HTML]{73EDFF}{\rule{2.7cm}{0.9mm}} \\
+       \@programa  & \@fecha & \textbf{pág. \thepage}
+    \end{tabular}
+    }
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Datos
+\newcommand{\@titulo}{}
+\newcommand{\@tamtitulo}{}
+\newcommand{\@subtitulo}{}
+\newcommand{\@tamsubtitulo}{}
+\newcommand{\@autor}{}
+\newcommand{\@programa}{}
+\newcommand{\@area}{}
+\newcommand{\@tutor}{}
+\newcommand{\@profesor}{}
+\newcommand{\@idioma}{}
+\newcommand{\@palabrasclave}{}
+\newcommand{\@fecha}{\today}
+
+\newcommand{\titulo}[2][45pt]{
+    \renewcommand{\@tamtitulo}{#1}
+    \renewcommand{\@titulo}{#2}}
+\newcommand{\subtitulo}[2][35pt]{
+    \renewcommand{\@subtitulo}{#1}
+    \renewcommand{\@subtitulo}{#2}}
+\newcommand{\autor}[1]{
+    \renewcommand{\@autor}{#1}}
+\newcommand{\programa}[1]{
+    \renewcommand{\@programa}{#1}}
+\newcommand{\area}[1]{
+    \renewcommand{\@area}{#1}}
+\newcommand{\tutor}[1]{
+    \renewcommand{\@tutor}{#1}}
+\newcommand{\profesor}[1]{
+    \renewcommand{\@profesor}{#1}}
+\newcommand{\fecha}[1]{
+    \renewcommand{\@fecha}{#1}}
+\newcommand{\idioma}[1]{
+    \renewcommand{\@idioma}{#1}}
+\newcommand{\palabrasclave}[1]{
+    \renewcommand{\@palabrasclave}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Portada
+\newcommand{\portada}{
+    \newgeometry{margin=10mm}
+    \thispagestyle{empty}
+    \noindent
+    \fcolorbox{celeste}{celeste}{
+    \begin{minipage}[t][8.5cm][t]{18.5cm}
+    \flushleft
+    \hspace{0pt}\\
+    {\fontsize{\@tamtitulo}{\@tamtitulo}\selectfont \textbf{\@titulo} \\}
+    \vspace{\fill}
+    \ifdefstring{\@subtitulo}{}{}%
+    {\fontsize{\@tamsubtitulo}{\@tamsubtitulo}\selectfont \@subtitulo \\\vspace{5mm}}
+    \end{minipage}
+    }\\[5mm]
+    \includegraphics[width=6.5cm]{Figuras/portada.png}
+    \hspace{4mm}
+    \fcolorbox{gris}{gris}{
+    \begin{minipage}[b][17cm][t]{11.4cm}
+    \flushleft
+    \hspace{0pt}\\
+    \Huge
+    \textbf{\@autor}\\\vspace{\fill}
+    \@programa\\\vspace{\fill}
+    \textbf{Área:} \@area\\\vspace{\fill}
+    \textbf{Tutor de TF:}\\
+    \@tutor\\\vspace{\fill}
+    \textbf{Profesor responsable de la asignatura:}\\
+    \@profesor\\\vspace{\fill}
+    \@fecha\\\vspace{\fill}
+    \end{minipage}
+    }
+    
+    \clearpage
+    \restoregeometry
+
+    \vspace*{\fill}
+    \noindent
+    \begin{minipage}{12cm}
+    \flushleft
+    \includegraphics[width= 2.5cm]{Figuras/cc.png}\\
+    Esta obra está sujeta a una licencia de Reconocimiento- NoComercial-SinObraDerivada \href{https://creativecommons.org/licenses/by-nc-nd/3.0/es/}{3.0 España de Creative Commons}
+    \end{minipage}
+    \vspace{2cm}
+
+    \newpage
+
+    \chapter*{Ficha del Trabajo Final}
+\begin{center}
+\begin{table}[ht]
+	\centering{}
+	\renewcommand{\arraystretch}{2}
+	\begin{tabular}{|R{4.5cm} | L{10cm}|}
+		\hline
+		\textbf{Título del trabajo:} &\cellcolor{gris}\@titulo\\
+		\hline
+        \textbf{Nombre del autor:} &\cellcolor{gris}\@autor\\
+		\hline
+        \textbf{Nombre del Tutor de TF:} &\cellcolor{gris}\@tutor\\
+		\hline
+        \textbf{Fecha de entrega:} &\cellcolor{gris}\@fecha\\
+		\hline
+        \textbf{Titulación o programa:} &\cellcolor{gris}\@programa\\
+		\hline
+        \textbf{Área del Trabajo Final:} &\cellcolor{gris}\@area\\
+		\hline
+        \textbf{Idioma del trabajo:} &\cellcolor{gris}\@idioma\\
+		\hline
+        \textbf{Palabras clave:} &\cellcolor{gris}\@palabrasclave\\
+		\hline
+	\end{tabular}
+\end{table}
+\end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bibliografía
+% \usepackage[babel]{csquotes}
+% \usepackage[style=apa,backend=biber]{biblatex}
+%     \DeclareLanguageMapping{spanish}{spanish-apa}
+    
+%     \DefineBibliographyStrings{spanish}{%
+%       andothers = {et al\adddot},
+%     }
+    
+%     \DefineBibliographyExtras{spanish}
+%         {\setcounter{smartand}{1}% or some other value
+%          \let\lbx@finalnamedelim=\lbx@es@smartand
+%          \let\lbx@finallistdelim=\lbx@es@smartand}
+    
+%     \setlength{\bibhang}{\parindent}  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Leyendas
+\usepackage[font={small},labelfont={bf,small},
+  justification=centerlast,tablename=Tabla]{caption}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Código
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{celeste!20},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    linewidth=0.98\linewidth,
+    xleftmargin=0.5cm
+}
+
+\lstset{style=mystyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tablas
+\usepackage{array, multirow}
+\newcolumntype{C}[1]{>{\hspace{0pt}\centering\arraybackslash}m{#1}}
+\newcolumntype{L}[1]{>{\hspace{0pt}\arraybackslash}m{#1}}
+\newcolumntype{R}[1]{>{\hspace{0pt}\raggedleft\arraybackslash}m{#1}}
+\usepackage{colortbl}
+\usepackage{longtable}
+\setlength{\LTpost}{-25pt}
+
+\colorlet{tableheadcolor}{celeste!50} % Table header colour = 25% gray
+\newcommand{\topline}{\arrayrulecolor{black}\specialrule{\heavyrulewidth}{\abovetopsep}{0pt}%
+            \arrayrulecolor{tableheadcolor}\specialrule{\belowrulesep}{0pt}{0pt}%
+            \arrayrulecolor{black}}
+\newcommand{\midline}{\arrayrulecolor{tableheadcolor}\specialrule{\aboverulesep}{0pt}{0pt}%
+            \arrayrulecolor{black}\specialrule{\lightrulewidth}{0pt}{0pt}%
+            \arrayrulecolor{white}\specialrule{\belowrulesep}{0pt}{0pt}%
+            \arrayrulecolor{black}}
+
+
+\makeatother

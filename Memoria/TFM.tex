@@ -1,0 +1,69 @@
+\documentclass[11pt, oneside]{book}
+
+\input{formato-TFM-UOC}
+\usepackage{amsthm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{tocloft}
+\setlength{\cftfignumwidth}{2.55em}
+
+\titulo[38.5pt]{Reconocimiento automático de imágenes para reconstrucción de redes planta-polinizador}
+% \subtitulo{Subtítulo (si lo hay)}
+\autor{Andrés Merino Toapanta}
+\programa{Máster Universitario en Ciencias de Datos}
+\area{Machine Learning}
+\tutor{Albert Solé-Ribalta, Pau Enric Serra, Javier Borge Holthoefer}
+\profesor{Albert Solé-Ribalta}
+\idioma{Castellano}
+\palabrasclave{Reconocimiento de imágenes, red planta-polinizador, red neuronal convolucional}
+\fecha{Enero 2024}
+
+% \addbibresource{referencias.bib}
+
+\begin{document}
+
+
+% portada
+\frontmatter
+\portada
+% abstract
+\input{0_resumen.tex}
+\newpage
+
+% indice
+\addcontentsline{toc}{chapter}{Índice}
+\tableofcontents
+% listado de figuras
+\newpage
+\addcontentsline{toc}{chapter}{Listado de Figuras}
+% cambio el nombre de la lista de figuras
+\renewcommand{\listfigurename}{Listado de Figuras}
+\listoffigures
+% listado de tablas
+% cambio el nombre de la lista de tablas
+\renewcommand{\listtablename}{Listado de Tablas}
+\newpage
+\addcontentsline{toc}{chapter}{Listado de Tablas}
+\listoftables
+
+
+
+\mainmatter
+% capitulos del documento
+\input{1_introduccion.tex}
+\input{2_arte.tex}
+\input{3_implementacion.tex}
+\input{4_conclusiones.tex}
+
+\appendix
+\input{5_anexo.tex}
+
+
+% bibliografia
+% \nocite{*}
+\addcontentsline{toc}{chapter}{Bibliografía}
+% \bibliographystyle{plain}
+\bibliographystyle{unsrt}
+\bibliography{referencias.bib}
+
+\end{document}
